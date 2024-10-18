@@ -92,3 +92,44 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     });
   })
   .catch(error => {console.error('Error accessing the chosen device:', error);});
+/*
+  document.getElementById('spoofDetectionTab').addEventListener('click', function() {
+    document.getElementById('spoofDetection').classList.add('active');
+    document.getElementById('report').classList.remove('active');
+    this.classList.add('active');
+    document.getElementById('reportTab').classList.remove('active');
+  });
+
+  document.getElementById('reportTab').addEventListener('click', function() {
+    document.getElementById('report').classList.add('active');
+    document.getElementById('spoofDetection').classList.remove('active');
+    this.classList.add('active');
+    document.getElementById('spoofDetectionTab').classList.remove('active');
+  });
+
+  async function fetchReports() {
+    try {
+      const response = await fetch('http://localhost:4000/reports');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const reports = await response.json();
+      
+      displayReports(reports);
+    } catch (error) {
+      console.error('Error fetching reports:', error);
+    }
+  }
+  
+  function displayReports(reports) {
+    const reportResult = document.getElementById('reportResult');
+    reportResult.textContent = ''; // 清空现有内容
+  
+    reports.forEach(report => {
+      const reportElement = document.createElement('pre');
+      reportElement.textContent = JSON.stringify(report, null, 2);
+      reportResult.appendChild(reportElement);
+    });
+  }
+  fetchReports();
+*/

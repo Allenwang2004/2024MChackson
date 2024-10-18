@@ -4,6 +4,9 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const FormData = require('form-data');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { exec } = require('child_process');
 
 const app = express();
 const port = 4000;
@@ -76,6 +79,36 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     });
   }
 });
+
+app.use(cors());
+app.use(bodyParser.json());
+
+let reports = [];
+
+app.post('/report', (req, res) => {
+    const report = req.body;
+    reports.push(report);
+    console.log('Received report:', report);
+  
+    // 获取 HTML 内容并保存
+    const htmlContent = report.html;
+    const htmlFilePath = path.join(__dirname, 'temp.html');
+  
+    fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
+  
+    // 打开 HTML 文件
+    exec(`open ${htmlFilePath}`, (error) => {
+      if (error) {
+        console.error(`Could not open file: ${error}`);
+        return res.status(500).json({ message: 'Could not open HTML file.' });
+      }
+      res.json({ message: 'Report received and HTML opened', report });
+    });
+  });
+  
+  app.get('/reports', (req, res) => {
+    res.json(reports);
+  });
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
