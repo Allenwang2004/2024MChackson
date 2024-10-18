@@ -1,0 +1,72 @@
+/* styles.css */
+
+/* 基本樣式設定 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* 標題樣式 */
+  h1 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  /* 表單容器樣式 */
+  form {
+    margin: 30px auto;
+    padding: 20px;
+    width: 300px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 表單標籤樣式 */
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* 文件上傳輸入框樣式 */
+  input[type="file"] {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* 提交按鈕樣式 */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* 結果區域樣式 */
+  pre {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    font-size: 14px;
+  }
