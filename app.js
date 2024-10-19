@@ -103,8 +103,7 @@ app.post('/report', (req, res) => {
       const imagePaths = stdout.trim().split('\n');
       console.log(`Scraping output: ${imagePaths}`);
 
-    exec(`node ${path.join(__dirname, 'result.js')}`, (error, stdout, stderr) => {
-    });
+    exec(`node ${path.join(__dirname, 'public/result.js')}`, (error, stdout, stderr) => {});
   
       res.json({ message: 'Scraping started successfully', images: imagePaths });
     });
