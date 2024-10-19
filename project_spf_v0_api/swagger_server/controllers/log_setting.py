@@ -33,3 +33,10 @@ def setup_logger(name="spoof-api", log_file_root='../log', level=logging.INFO):
     return logger
 
 
+docker run --rm -it --name spf_api -p 8085:8085 
+
+-v/Users/chung38/Documents/hackathon/2024MChackson/project_spf_v0_api:/home/docker/spoof_docker 
+
+-v/{your_path}/log:/home/docker/spoof_docker/swagger_server/log 
+
+hackathon_spf_api:v0
