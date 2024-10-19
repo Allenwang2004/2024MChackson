@@ -65,3 +65,7 @@ window.addEventListener('DOMContentLoaded', async function () {
     document.getElementById('result').textContent = 'Error fetching images list: ' + error.message;
   }
 });
+
+document.getElementById('backButton').addEventListener('click', function() {
+  window.location.href = 'index.html';
+});
