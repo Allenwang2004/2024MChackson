@@ -1,46 +1,36 @@
-const { exec } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+window.addEventListener('DOMContentLoaded', async function () {
+  const imagesFolder = 'images'; // 假設圖片資料夾的路徑
 
-// 打開 result.html
-exec('open http://localhost:4000/result.html');
+  // Fetch API to send each image in the folder
+  try {
+    // 從後端 API 獲取資料夾中的文件列表
+    const response = await fetch(`/list-images?folder=${imagesFolder}`, { method: 'GET' });
+    if (!response.ok) {
+      throw new Error('Failed to fetch images list: ' + response.statusText);
+    }
 
-// 獲取結果元素
-const resultElement = document.getElementById('result');
+    const imageFiles = await response.json(); // 假設後端返回一個文件名列表
 
-//do the post request for every image in the images folder
-const imagesFolder = 'images';
-fs.readdir(imagesFolder, (err, files) => {
-  if (err) {
-    console.error('Error reading images folder:', err);
-    resultElement.textContent = 'Error reading images folder: ' + err.message;
-    return;
-  }
+    imageFiles.forEach(async (file) => {
+      const formData = new FormData();
+      formData.append('file', file);
 
-  files.forEach(file => {
-    const filePath = path.join(imagesFolder, file);
-    const formData = new FormData();
-    formData.append('img', fs.createReadStream(filePath));
+      // 對每張圖片發送 POST 請求
+      const uploadResponse = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
 
-    fetch('http://localhost:4000/inference', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      if (!uploadResponse.ok) {
+        throw new Error('Network response was not ok for image: ' + file);
       }
-      return response.json();
-    })
-    .then(data => {
-      const result = JSON.stringify(data, null, 2); // 格式化結果
-      resultElement.textContent += `Result for ${file}:\n${result}\n\n`;
-    })
-    .catch(error => {
-      console.error('Error sending request:', error);
-      resultElement.textContent += `Error sending request for ${file}: ${error.message}\n\n`;
+
+      const result = await uploadResponse.json();
+      document.getElementById('result').textContent += `Image: ${file}\nResult: ${JSON.stringify(result, null, 2)}\n\n`;
     });
-  });
+  } catch (error) {
+    document.getElementById('result').textContent = 'Error fetching or uploading images: ' + error.message;
+  }
 });
 
 document.getElementById('backButton').addEventListener('click', function() {

@@ -94,7 +94,7 @@ app.post('/report', (req, res) => {
     console.log('Received scraping request for URL:', urlToScrape);
   
     const pythonScript = path.join(__dirname, 'scraping.py');
-  
+    
     exec(`python3 ${pythonScript} ${urlToScrape}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error running scraping.py: ${error}`);
@@ -102,7 +102,7 @@ app.post('/report', (req, res) => {
       }
       const imagePaths = stdout.trim().split('\n');
       console.log(`Scraping output: ${imagePaths}`);
-
+    exec('open http://localhost:4000/result.html');
     exec(`node ${path.join(__dirname, 'public/result.js')}`, (error, stdout, stderr) => {});
   
       res.json({ message: 'Scraping started successfully', images: imagePaths });
