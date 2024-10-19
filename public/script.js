@@ -133,3 +133,8 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
   }
   fetchReports();
 */
+
+/*<!-- Button to go back to index.html -->*/
+document.getElementById('backButton').addEventListener('click', function() {
+    window.location.href = 'index.html';
+});

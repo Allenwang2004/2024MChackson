@@ -1,6 +1,6 @@
 import sys
-import requests
-from bs4 import BeautifulSoup
+import requests #type: ignore
+from bs4 import BeautifulSoup #type: ignore
 import os
 
 def download_images(url):
