@@ -1,4 +1,4 @@
-const urlToScrape = 'https://example.com';
+const urlToScrape = 'https://tw.news.yahoo.com/';
 
 fetch('http://localhost:4000/report', {
   method: 'POST',

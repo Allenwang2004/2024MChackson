@@ -85,30 +85,41 @@ app.use(bodyParser.json());
 
 let reports = [];
 
-
 app.post('/report', (req, res) => {
     const report = req.body;
     const urlToScrape = report.url;
-    
+  
+    // 把 report 加到缓存
     reports.push(report);
     console.log('Received scraping request for URL:', urlToScrape);
   
     const pythonScript = path.join(__dirname, 'scraping.py');
-    
+  
     exec(`python3 ${pythonScript} ${urlToScrape}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error running scraping.py: ${error}`);
-        return res.status(500).json({ message: 'Scraping failed.' });
+        return res.status(500).json({ message: 'Scraping failed.', error: stderr });
       }
-      
-      console.log(`Scraping output: ${stdout}`);
-      res.json({ message: 'Scraping started successfully', output: stdout });
+      const imagePaths = stdout.trim().split('\n');
+      console.log(`Scraping output: ${imagePaths}`);
+  
+      // 打開第一個圖像
+      imagePaths.forEach(imagePath => {
+        exec(`open ${imagePaths[0]}`, (error, stdout, stderr) => {
+          if (err) {
+            console.error(`Could not open image: ${err}`);
+          }
+        });
+      });
+  
+      // 向前端返回成功的响应和图像路径
+      res.json({ message: 'Scraping started successfully', images: imagePaths });
     });
   });
   
-  app.get('/reports', (req, res) => {
+app.get('/reports', (req, res) => {
     res.json(reports);
-  });
+});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
