@@ -1,4 +1,4 @@
-const htmlContent = '<html><body><h1>This is a test HTML</h1></body></html>';
+const urlToScrape = 'https://example.com';
 
 fetch('http://localhost:4000/report', {
   method: 'POST',
@@ -6,8 +6,8 @@ fetch('http://localhost:4000/report', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({ 
-    title: 'Spoof Detection Report',
-    html: htmlContent,
+    title: 'Scraping Request',
+    url: urlToScrape,
   }),
 })
 .then(response => {
@@ -17,8 +17,8 @@ fetch('http://localhost:4000/report', {
   return response.json();
 })
 .then(data => {
-  console.log('Report sent successfully:', data);
+  console.log('Scraping request sent successfully:', data);
 })
 .catch(error => {
-  console.error('Error sending report:', error);
+  console.error('Error sending request:', error);
 });

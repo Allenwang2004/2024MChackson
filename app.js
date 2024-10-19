@@ -85,24 +85,24 @@ app.use(bodyParser.json());
 
 let reports = [];
 
+
 app.post('/report', (req, res) => {
     const report = req.body;
+    const urlToScrape = report.url;
+    
     reports.push(report);
-    console.log('Received report:', report);
+    console.log('Received scraping request for URL:', urlToScrape);
   
-    // 获取 HTML 内容并保存
-    const htmlContent = report.html;
-    const htmlFilePath = path.join(__dirname, 'temp.html');
-  
-    fs.writeFileSync(htmlFilePath, htmlContent, 'utf8');
-  
-    // 打开 HTML 文件
-    exec(`open ${htmlFilePath}`, (error) => {
+    const pythonScript = path.join(__dirname, 'scraping.py');
+    
+    exec(`python3 ${pythonScript} ${urlToScrape}`, (error, stdout, stderr) => {
       if (error) {
-        console.error(`Could not open file: ${error}`);
-        return res.status(500).json({ message: 'Could not open HTML file.' });
+        console.error(`Error running scraping.py: ${error}`);
+        return res.status(500).json({ message: 'Scraping failed.' });
       }
-      res.json({ message: 'Report received and HTML opened', report });
+      
+      console.log(`Scraping output: ${stdout}`);
+      res.json({ message: 'Scraping started successfully', output: stdout });
     });
   });
   
