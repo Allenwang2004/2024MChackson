@@ -21,7 +21,13 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     }
 
     const result = await response.json();
-    document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+    if(result.message=="Audio file uploaded and processed")
+        document.getElementById('result').textContent = JSON.stringify(result.result.result, null, 2);
+      else if(result.message=="Image file uploaded and processed")
+        if(result.result[0].output[0]>0.5)
+          document.getElementById('result').textContent = "fake"
+        else
+          document.getElementById('result').textContent = "real"
   } catch (error) {
     document.getElementById('result').textContent = 'Error uploading file: ' + error.message;
   }
@@ -85,45 +91,43 @@ navigator.mediaDevices.getUserMedia({
     const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
     const audioUrl = URL.createObjectURL(audioBlob);
     audioPlayback.src = audioUrl;
-
+  
     // 當音頻元數據加載完成後觸發
     audioPlayback.onloadedmetadata = () => {
-      // 設置音頻播放器的初始進度為 0 並且顯示總時長
+      // 設置音頻播放器的初始進度為 0 
       audioPlayback.currentTime = 0;
-
-      const totalDuration = Math.floor(audioPlayback.duration);
-      const totalMinutes = Math.floor(totalDuration / 60);
-      const totalSeconds = totalDuration % 60;
-      const formattedTotalTime = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
     };
-
+  
     downloadLink.href = audioUrl;
     downloadLink.download = 'audio.wav';
     downloadLink.style.display = 'block';
     downloadLink.textContent = 'Download';
     uploadRecordedAudio.style.display = 'block';
-
+  
     uploadRecordedAudio.addEventListener('click', async function () {
       const formData = new FormData();
       formData.append('file', audioBlob, 'audio.wav');
-
+  
       try {
         const response = await fetch('/upload', {
           method: 'POST',
           body: formData
         });
-
+  
         if (!response.ok) {
           throw new Error('Network response was not ok: ' + response.statusText);
         }
-
+  
         const result = await response.json();
-        document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+        const specificMessage = result.message || 'No message found';
+        const specificResult = result.status_code || 'No result found';
+
+        document.getElementById('result').textContent = `Message: ${specificMessage}, Result: ${specificResult}`;
       } catch (error) {
         document.getElementById('result').textContent = 'Error uploading recorded audio: ' + error.message;
       }
     });
-  });
+  });  
 })
 .catch(error => { console.error('Error accessing the chosen device:', error); });
 
