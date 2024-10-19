@@ -29,7 +29,7 @@ h2 {
   display: block;
   justify-content: center;
   margin-top: 30px;
-  /*增加邊框*/
+  /* 增加邊框 */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -97,6 +97,7 @@ button {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 button:hover {
@@ -119,4 +120,57 @@ pre {
   margin-right: auto;
   overflow: auto; 
   border-radius: 8px;
+}
+
+/* 音頻錄製容器樣式 */
+#audio_container {
+  display: block;
+  justify-content: center;
+  margin-top: 30px;
+  /* 增加邊框 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+/* 音頻錄製按鈕樣式 */
+#audio_container button {
+  background-color: #769FCD;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+}
+
+#audio_container button:hover {
+  background-color: #5a82a1;
+}
+
+/* 音頻播放樣式 */
+#audioPlayback {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+}
+
+/* 音頻下載連結樣式 */
+#downloadLink {
+  margin-top: 20px;
+  display: block;
+  font-size: 16px;
+  color: #112D4E;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#downloadLink:hover {
+  color: #769FCD;
 }
