@@ -102,13 +102,9 @@ app.post('/report', (req, res) => {
       }
       const imagePaths = stdout.trim().split('\n');
       console.log(`Scraping output: ${imagePaths}`);
-  
-      // 打開第一個圖像
+      
       imagePaths.forEach(imagePath => {
         exec(`open ${imagePaths[0]}`, (error, stdout, stderr) => {
-          if (err) {
-            console.error(`Could not open image: ${err}`);
-          }
         });
       });
   
@@ -124,3 +120,4 @@ app.get('/reports', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
