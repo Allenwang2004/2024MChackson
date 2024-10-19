@@ -6,6 +6,7 @@ body {
   background-color: #f4f4f4;
   color: #333;
   text-align: center;
+  margin-bottom: 80px;
 }
 
 /* 標題樣式 */
@@ -18,7 +19,7 @@ h1 {
 
 h2 {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   color: #0F4C75;
 }
 
@@ -39,7 +40,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 45%;
-  height: 300px;
+  height: 320px;
   text-align: left;
   margin: 20px auto;
   font-size: 16px;
@@ -130,4 +131,11 @@ pre {
 #resultContainer {
   width: 76%;
   margin: 20px auto;
+}
+
+#recordingIndicator {
+  display: none;
+  color: #f39A04; 
+  font-weight: bold;
+  margin-bottom: 5px;
 }
