@@ -17,59 +17,31 @@ h1 {
 }
 
 h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #112D4E;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: #0F4C75;
 }
 
-/* 外部容器樣式 */
-#pic_container {
-  display: block;
-  justify-content: center;
-  margin-top: 30px;
-  /* 增加邊框 */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  height: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* 表單和結果容器樣式 */
-#pic {
+/* 容器並排設置 */
+#mediaContainer {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100%; /* 設置整體容器的寬度 */
+  width: 80%;
+  margin: 20px auto;
 }
 
-/* 調整結果區域的寬度 */
-#pic_result {
-  margin-left: 20px;
-  width: 50%;
-}
-
-#upload {
-  width: 50%;
-  margin-left: 20px;
-}
-
-/* 表單容器樣式 */
-form {
-  padding: 20px;
-  width: 400px;
-  height: 300px;
+/* 通用容器樣式 */
+.container {
   background-color: white;
+  border: 2px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 25px;
+  padding: 20px;
+  width: 45%;
+  height: 300px;
+  text-align: left;
+  margin: 20px auto;
 }
 
 /* 表單標籤樣式 */
@@ -83,7 +55,7 @@ label {
 input[type="file"] {
   display: block;
   margin-bottom: 20px;
-  width: 91%;
+  width: 95%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -101,67 +73,17 @@ button {
 }
 
 button:hover {
-  background-color: #769FCD;
-}
-
-/* 結果區域樣式 */
-pre {
-  margin-top: 20px;
-  padding: 25px;
-  background-color: #eaeaea;
-  border-radius: 4px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  text-align: left;
-  font-size: 14px;
-  width: 400px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: auto; 
-  border-radius: 8px;
-}
-
-/* 音頻錄製容器樣式 */
-#audio_container {
-  display: block;
-  justify-content: center;
-  margin-top: 30px;
-  /* 增加邊框 */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 100px;
-}
-
-/* 音頻錄製按鈕樣式 */
-#audio_container button {
-  background-color: #769FCD;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 10px;
-}
-
-#audio_container button:hover {
   background-color: #5a82a1;
 }
 
-/* 音頻播放樣式 */
+/* 錄音播放樣式 */
 #audioPlayback {
   display: block;
   margin: 20px auto;
-  width: 50%;
+  width: 100%;
 }
 
-/* 音頻下載連結樣式 */
+/* 錄音下載連結樣式 */
 #downloadLink {
   margin-top: 20px;
   display: block;
@@ -173,4 +95,26 @@ pre {
 
 #downloadLink:hover {
   color: #769FCD;
+}
+
+/* 結果顯示樣式 */
+pre {
+  margin-top: 20px;
+  padding: 25px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 14px;
+  width: 90%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+}
+
+/* 結果容器樣式 */
+#resultContainer {
+  width: 76%;
+  margin: 20px auto;
 }
