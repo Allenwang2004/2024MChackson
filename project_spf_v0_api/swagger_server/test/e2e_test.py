@@ -46,7 +46,7 @@ if __name__ == '__main__':
     
     test_audio_root = './swagger_server/test/audio_data/'
     reference_id = 'REF00000001'
-    model_version = 'v0'
+    model_version = 'v1'
     audio_name = 'BCRf1033_8k_bit16_16k_bit16.wav'
 #    audio_name = 'SCEf1018_8k_bit16_16k_bit16.wav'
     audio_path = test_audio_root + audio_name

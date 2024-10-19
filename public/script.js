@@ -25,9 +25,9 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
         document.getElementById('result').textContent = JSON.stringify(result.result.result, null, 2);
       else if(result.message=="Image file uploaded and processed")
         if(result.result[0].output[0]>0.5)
-          document.getElementById('result').textContent = "fake"
+          document.getElementById('result').textContent = "fake, testing result: "+JSON.stringify(result.result[0].output[0], null, 2);
         else
-          document.getElementById('result').textContent = "real"
+          document.getElementById('result').textContent = "real, testing result: "+JSON.stringify(result.result[0].output[0], null, 2);
   } catch (error) {
     document.getElementById('result').textContent = 'Error uploading file: ' + error.message;
   }

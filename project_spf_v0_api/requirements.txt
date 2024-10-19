@@ -6,4 +6,3 @@ connexion[uvicorn]
 a2wsgi==1.10.6
 fastapi==0.111.0
 pyjwt==2.8.0
-joblib==1.1.0
