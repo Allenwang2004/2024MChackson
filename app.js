@@ -102,12 +102,10 @@ app.post('/report', (req, res) => {
       }
       const imagePaths = stdout.trim().split('\n');
       console.log(`Scraping output: ${imagePaths}`);
-      
-      //open http://localhost:4000/result.html and show the images
 
-      exec(`open http://localhost:4000/result.html`);
+    exec(`node ${path.join(__dirname, 'result.js')}`, (error, stdout, stderr) => {
+    });
   
-      // 向前端返回成功的响应和图像路径
       res.json({ message: 'Scraping started successfully', images: imagePaths });
     });
   });
