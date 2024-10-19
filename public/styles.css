@@ -17,8 +17,24 @@ h1 {
 }
 
 h2 {
-  margin-top: 0;
+  margin-top: 40px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #112D4E;
+}
+
+/* 外部容器樣式 */
+#pic_container {
+  display: block;
+  justify-content: center;
+  margin-top: 30px;
+  /*增加邊框*/
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -28,7 +44,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 30px;
+  width: 100%; /* 設置整體容器的寬度 */
 }
 
 /* 調整結果區域的寬度 */
@@ -38,20 +54,22 @@ h2 {
 }
 
 #upload {
-  margin-left: 20px;
   width: 50%;
+  margin-left: 20px;
 }
 
 /* 表單容器樣式 */
 form {
   padding: 20px;
-  width: 250px;
+  width: 400px;
+  height: 300px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  padding: 25px;
 }
 
 /* 表單標籤樣式 */
@@ -88,16 +106,17 @@ button:hover {
 /* 結果區域樣式 */
 pre {
   margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 15px;
+  padding: 25px;
   background-color: #eaeaea;
   border-radius: 4px;
   white-space: pre-wrap;
   word-wrap: break-word;
   text-align: left;
   font-size: 14px;
-  width: 300px;  /* 設置寬度 */
-  height: 300px; /* 設置高度與寬度相等，形成正方形 */
-  overflow: auto; /* 若內容超出，顯示滾動條 */
+  width: 400px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto; 
+  border-radius: 8px;
 }
