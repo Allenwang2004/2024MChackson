@@ -21,7 +21,16 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
       }
   
       const result = await response.json();
-      document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+      if(result.message=="Audio file uploaded and processed")
+        document.getElementById('result').textContent = JSON.stringify(result.result.result, null, 2);
+      else if(result.message=="Image file uploaded and processed")
+        if(result.result[0].output[0]>0.5)
+          document.getElementById('result').textContent = "fake"
+        else
+          document.getElementById('result').textContent = "real"
+        /*document.getElementById('result').textContent = JSON.stringify(result.result[0].output[0], null, 2);*/
+
+
     } catch (error) {
       document.getElementById('result').textContent = 'Error uploading file: ' + error.message;
     }
@@ -82,9 +91,15 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
           if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
           }
-  
+
           const result = await response.json();
-          document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+          
+
+          const specificMessage = result.message || 'No message found';
+          const specificResult = result.status_code || 'No result found';
+
+          document.getElementById('result').textContent = `Message: ${specificMessage}, Result: ${specificResult}`;
+          /*document.getElementById('result').textContent = JSON.stringify(result, null, 2);*/
         } catch (error) {
           document.getElementById('result').textContent = 'Error uploading recorded audio: ' + error.message;
         }
