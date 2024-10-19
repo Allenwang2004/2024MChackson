@@ -83,7 +83,146 @@ button {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 18px;/* 基本樣式設定 */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  /* 標題樣式 */
+  h1 {
+    background-color: #769FCD;
+    color: white;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  h2 {
+    margin-top: 20px;
+    margin-bottom: 35px;
+    color: #0F4C75;
+  }
+  
+  /* 容器並排設置 */
+  #mediaContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  /* 通用容器樣式 */
+  .container1, .container2 {
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 45%;
+    text-align: left;
+    margin: 20px;
+    font-size: 16px;
+  }
+  
+  /* 統一高度 */
+  .container1 {
+    height: 350px;  /* 統一容器1和容器2的高度 */
+  }
+  
+  .container2 {
+    height: 350px;  /* 調整到與容器1相同高度 */
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  /* 表單標籤樣式 */
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* 文件上傳輸入框樣式 */
+  input[type="file"] {
+    display: block;
+    margin-bottom: 20px;
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* 提交按鈕樣式 */
+  button {
+    background-color: #769FCD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  button:hover {
+    background-color: #3F72AF;
+  }
+  
+  /* 錄音播放樣式 */
+  #audioPlayback {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+  }
+  
+  /* 錄音下載連結樣式 */
+  #downloadLink {
+    margin-top: 20px;
+    display: block;
+    font-size: 16px;
+    color: #112D4E;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #downloadLink:hover {
+    color: #769FCD;
+  }
+  
+  /* 結果顯示樣式 */
+  pre {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    font-size: 14px;
+    width: 90%;
+    height: 55%;
+    overflow: auto;
+    margin: auto;
+  }
+  
+  /* 結果容器樣式 */
+  #resultContainer {
+    width: 76%;
+    margin: 20px auto;
+  }
+  
+  #recordingIndicator {
+    display: none;
+    color: #f39A04; 
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
 }
 
 button:hover {

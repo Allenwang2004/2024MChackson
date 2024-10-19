@@ -26,6 +26,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
     document.getElementById('result').textContent = 'Error uploading file: ' + error.message;
   }
 });
+
 let mediaRecorder;
 let audioChunks = [];
 let startTime;
@@ -38,10 +39,6 @@ const downloadLink = document.getElementById('downloadLink');
 const uploadRecordedAudio = document.getElementById('uploadRecordedAudio');
 const recordingIndicator = document.getElementById('recordingIndicator'); // 錄音指示器
 const recordingTime = document.getElementById('recordingTime'); // 錄音時間顯示
-const progressBarContainer = document.getElementById('progressBarContainer'); // 進度條容器
-
-// 隱藏進度條容器
-progressBarContainer.style.display = 'none';
 
 // 更新錄音時間顯示的函數
 function updateRecordingTime() {
@@ -91,9 +88,6 @@ navigator.mediaDevices.getUserMedia({
 
     // 當音頻元數據加載完成後觸發
     audioPlayback.onloadedmetadata = () => {
-      // 顯示進度條和播放控制元件
-      progressBarContainer.style.display = 'block';
-
       // 設置音頻播放器的初始進度為 0 並且顯示總時長
       audioPlayback.currentTime = 0;
 
@@ -101,9 +95,6 @@ navigator.mediaDevices.getUserMedia({
       const totalMinutes = Math.floor(totalDuration / 60);
       const totalSeconds = totalDuration % 60;
       const formattedTotalTime = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
-
-      // 手動設置進度條顯示為 "0:00/xx:xx"
-      document.getElementById('result').textContent = `0:00/${formattedTotalTime}`;
     };
 
     downloadLink.href = audioUrl;
@@ -135,6 +126,7 @@ navigator.mediaDevices.getUserMedia({
   });
 })
 .catch(error => { console.error('Error accessing the chosen device:', error); });
+
 
 /*<!-- Button to go back to index.html -->*/
 document.getElementById('backButton').addEventListener('click', function() {
