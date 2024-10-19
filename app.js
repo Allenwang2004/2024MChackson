@@ -59,7 +59,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
       const formData = new FormData();
       formData.append('img', fs.createReadStream(uploadedFilePath));
 
-      const responseç = await axios.post('http://localhost:3000/inference', formData, {
+      const response = await axios.post('http://localhost:3000/inference', formData, {
         headers: {
           ...formData.getHeaders(),
         }
