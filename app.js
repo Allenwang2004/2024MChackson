@@ -156,39 +156,27 @@ app.get('/list-images', (req, res) => {
 });
 
 // 處理單一圖片網址
+const { pipeline } = require('stream');
+const { promisify } = require('util');
+const streamPipeline = promisify(pipeline);
+
 app.post('/image', (req, res) => {
     clearFolder(path.join(__dirname, 'images'));
-    const imageUrl = req.body.url; // 改成從 body 獲取 URL
+    const imageUrl = req.body.url;
     console.log('Received image URL:', imageUrl);
-    
-    if (!imageUrl) {
-        return res.status(400).send('No URL provided.');
-    }
 
-    // 下載圖片並儲存在 images 資料夾
-    const imageFileName = imageUrl.split('/').pop();
-    const imagePath = path.join(__dirname, 'images', imageFileName);
-    const writer = fs.createWriteStream(imagePath);
+    const pythonScript = path.join(__dirname, 'download.py');
 
-    axios({
-        url: imageUrl,
-        method: 'GET',
-        responseType: 'stream'
-    })
-    .then(response => {
-        response.data.pipe(writer);
-        writer.on('finish', () => {
-            exec('open http://localhost:4000/result.html');
-            res.json({ message: 'Image downloaded and processed', url: imageUrl });
-        });
-        writer.on('error', () => {
-            res.status(500).send('Error saving image');
-        });
-    })
-    .catch(error => {
-        console.error('Error downloading image:', error);
-        return res.status(500).send('Error downloading image');
+    exec(`python ${pythonScript} ${imageUrl}`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error running download.py: ${error}`);
+            return res.status(500).json({ message: 'Image download failed.', error: stderr });
+        }
+
+        console.log(stdout);
+        res.json({ message: 'Image downloaded and processed', url: imageUrl });
     });
+    exec('open http://localhost:4000/result.html');
 });
 
 // 提供靜態圖片文件

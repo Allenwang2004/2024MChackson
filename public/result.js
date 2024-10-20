@@ -51,7 +51,10 @@ window.addEventListener('DOMContentLoaded', async function () {
         const output = result.result[0].output[0]; // 獲取 output 值
 
         const outputElement = document.createElement('p');
-        outputElement.textContent = `Output: ${output}`;
+        if(result.result[0].output[0]>0.5)
+          outputElement.textContent = "Output: " + "Fake";
+        else
+          outputElement.textContent = "Output: " + "Real";
 
         // 將圖片和 output 添加到 result-item 中
         resultItem.appendChild(imgElement);
@@ -60,10 +63,10 @@ window.addEventListener('DOMContentLoaded', async function () {
         // 將 result-item 添加到結果容器
         resultContainer.appendChild(resultItem);
       } catch (error) {
-        console.error('Error processing image:', file, error.message);
+        //console.error('Error processing image:', file, error.message);
         const errorElement = document.createElement('p');
-        errorElement.textContent = `Error processing image ${file}: ${error.message}`;
-        document.getElementById('result').appendChild(errorElement);
+        //errorElement.textContent = `Error processing image ${file}: ${error.message}`;
+        //document.getElementById('result').appendChild(errorElement);
       }
     }
   } catch (error) {
