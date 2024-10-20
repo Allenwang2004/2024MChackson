@@ -22,7 +22,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function 
 
     const result = await response.json();
     if(result.message=="Audio file uploaded and processed")
-        document.getElementById('result').textContent = JSON.stringify(result.result.result, null, 2);
+        document.getElementById('result').textContent = JSON.stringify(result.result.confidence, null, 2)+" "+JSON.stringify(result.result.result, null, 2);
       else if(result.message=="Image file uploaded and processed")
         if(result.result[0].output[0]>0.5)
           document.getElementById('result').textContent = "fake, testing result: "+JSON.stringify(result.result[0].output[0], null, 2);

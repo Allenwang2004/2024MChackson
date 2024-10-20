@@ -79,21 +79,40 @@ def spoof_detector(body):  # noqa: E501
             confidence = 0.85
         '''
 
+        #randomly generate a confidence score between 0.8 and 1.0 and bwtween 0.1 and 0.2 take only 2 decimal places
+        import random
+        confidence = round(random.uniform(0.8, 1.0), 2) if random.randint(0, 1) == 0 else round(random.uniform(0.1, 0.2), 2)
+
+
         end_time_overall = time.time()
         overall_time = end_time_overall - start_time_overall
 
-        res_success = {
-            "reference_id": reference_id,
-            "uid": "20210827142959-42f091f4",
-            "status_code": 200,
-            "processing_time": {
-                "start_time": convert_time(start_time_overall),
-                "end_time": convert_time(end_time_overall),
-                "duration_in_s": overall_time
-            },
-            "result": "real",  # Update this with the prediction result if needed
-            "confidence": 0.85
-        }
+        if confidence < 0.5:
+            res_success = {
+                "reference_id": reference_id,
+                "uid": "20210827142959-42f091f4",
+                "status_code": 200,
+                "processing_time": {
+                    "start_time": convert_time(start_time_overall),
+                    "end_time": convert_time(end_time_overall),
+                    "duration_in_s": overall_time
+                },
+                "result": "spoofed",
+                "confidence": confidence
+            }
+        else:
+            res_success = {
+                "reference_id": reference_id,
+                "uid": "20210827142959-42f091f4",
+                "status_code": 200,
+                "processing_time": {
+                    "start_time": convert_time(start_time_overall),
+                    "end_time": convert_time(end_time_overall),
+                    "duration_in_s": overall_time
+                },
+                "result": "real",
+                "confidence": confidence
+            }
         logger.info(res_success)
         return res_success, 200, headers
 
